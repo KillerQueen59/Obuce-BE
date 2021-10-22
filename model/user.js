@@ -23,6 +23,22 @@ const UserSchema = new Schema(
             required: [true, "jenis kelamin harus ada"],
             enum: constant.enumerate.GENDER
         },
+        birthdate: {
+            type: Date,
+            required: [true, "tanggal lahir harus ada"]
+        },
+        weight: {
+            type: Number,
+            required: [true, "berat harus ada"]
+        },
+        height: {
+            type: Number,
+            required: [true, "tinggi harus ada"]
+        },
+        bmi: {
+            type: Number,
+            required: [true, "bmi harus ada"]
+        },
     }
 )
 
