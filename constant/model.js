@@ -19,6 +19,9 @@ exports.WORKOUT_HISTORY = 'WorkoutHistoryModel'
 // makanan
 exports.FOOD = 'FoodModel'
 
+// foto makanan
+exports.FOODIMG = 'FoodImageModel'
+
 // nutrisi
 exports.NUTRITION = 'NutritionModel'
 

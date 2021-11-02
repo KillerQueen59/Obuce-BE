@@ -14,6 +14,8 @@ module.exports = async function (app) {
     app.use(express.json())
     app.use(express.urlencoded({ extended: true }))
 
+    app.use('/static', express.static('uploads'))
+
     // route
     app.use('/v1', route())
 

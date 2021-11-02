@@ -19,6 +19,9 @@ exports.WORKOUT_HISTORY = 'workouthistories'
 // makanan
 exports.FOOD = 'foods'
 
+// foto makanan
+exports.FOODIMG = 'foodimages'
+
 // nutrisi
 exports.NUTRITION = 'nutritions'
 

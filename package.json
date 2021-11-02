@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.24.0",
     "bcrypt": "^5.0.1",
     "caller": "^1.0.1",
     "chalk": "^4.1.2",
@@ -21,6 +22,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.0.8",
     "morgan": "^1.10.0",
+    "multer": "^1.4.3",
     "pm2": "^5.1.2",
     "socket.io": "^4.2.0"
   }

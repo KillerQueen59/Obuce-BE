@@ -1,7 +1,11 @@
+const { exec } = require('child_process')
+const axios = require('axios')
+
 const { response } = require('../helper')
 const foodModel = require('../model/food')
 const ingredientModel = require('../model/ingredient')
 const nutritionModel = require('../model/nutrition')
+const foodImageModel = require('../model/foodImage')
 const { log } = require('../helper')
 
 exports.index = async (req, res) => {
@@ -69,4 +73,31 @@ exports.delete = async (req, res) => {
     await foodModel.findByIdAndDelete(id)
 
     return response.Success(res, { message: "delete success" })
+}
+
+exports.detect = async (req, res) => {
+
+    const { _id } = res.locals.auth
+    const { filename } = req.file;
+
+    const url = `http://127.0.0.1:8080/detect?image_url=http://127.0.0.1:3000/static/foods/${filename}`
+
+    const { data } = await axios.get(url)
+    const labels = data.map(i => {
+        return i.name
+    })
+
+    const image = await foodImageModel.create({
+        filename,
+        userId: _id,
+        labels,
+    })
+
+    // log.debug(labels)
+    // log.debug(file)
+    // return res.send(file);
+    return response.Success(res, {
+        // message: "yes",
+        image
+    })
 }
