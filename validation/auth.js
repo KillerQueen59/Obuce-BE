@@ -13,7 +13,6 @@ module.exports = {
             password: joi.string().min(8).required(),
             weight: joi.number().required(),
             height: joi.number().required(),
-            bmi: joi.number().required(),
             birthdate: joi.date().required(),
         }),
         login: joi.object().keys({

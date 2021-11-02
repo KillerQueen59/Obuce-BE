@@ -3,18 +3,23 @@ const { response } = require('../helper')
 const UserModel = require('../model/user')
 
 exports.register = async (req, res) => {
-    const { name, email, password, gender, weight, height, bmi, birthdate } = req.body
+    const { name, email, password, gender, weight, height, birthdate } = req.body
+
     if (await UserModel.exists({ email })) {
         return res.status(400).json({
             message: "email sudah terdaftar"
         })
     }
+
+    const bmi = weight / (height * height / 10000)
+
     const user = await UserModel.create({
         name,
         email,
         password,
         gender, weight, height, bmi, birthdate
     })
+
     return response.Success(res, { user })
 }
 
