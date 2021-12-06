@@ -36,5 +36,7 @@ exports.foodRoute = (app) => {
     route.put('/:id', validateBody(schemas.create), handler.Catcher(controller.update))
     route.delete('/:id', handler.Catcher(controller.delete))
 
-    route.post('/upload', auth(), multer({ storage: getDiskStorage('../uploads/foods'), limits: imageLimits }).single('image'), handler.Catcher(controller.detect))
+    route.post('/upload',
+        // auth(),
+        multer({ storage: getDiskStorage('../uploads/foods'), limits: imageLimits }).single('image'), handler.Catcher(controller.detect))
 }

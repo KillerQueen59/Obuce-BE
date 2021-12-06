@@ -4,6 +4,7 @@ const fs = require('fs')
 const path = require('path')
 
 const { response } = require('../helper')
+const UserModel = require('../model/user')
 const foodModel = require('../model/food')
 const ingredientModel = require('../model/ingredient')
 const nutritionModel = require('../model/nutrition')
@@ -79,7 +80,9 @@ exports.delete = async (req, res) => {
 
 exports.detect = async (req, res) => {
 
-    const { _id } = res.locals.auth
+    // const { _id } = res.locals.auth
+    const { _id } = await UserModel.findOne({}, "_id").lean()
+    console.log(_id)
     const { filename } = req.file;
 
     const url = `http://127.0.0.1:8080/detect?image_url=http://127.0.0.1:3000/static/foods/${filename}`
