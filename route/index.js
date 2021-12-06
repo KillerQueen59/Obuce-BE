@@ -7,6 +7,7 @@ const { dictionaryRoute } = require('./dictionary')
 const { nutritionRoute } = require('./nutrition')
 const { ingredientRoute } = require('./ingredient')
 const { messageRoute } = require('./message')
+const { userRoute } = require('./user')
 
 module.exports = () => {
     const route = Router()
@@ -23,6 +24,7 @@ module.exports = () => {
     nutritionRoute(route)
     ingredientRoute(route)
     messageRoute(route)
+    userRoute(route)
 
     return route
 }

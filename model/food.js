@@ -52,7 +52,10 @@ const FoodSchema = new Schema(
                 type: String,
                 required: [true, 'deskripsi harus ada'],
             }
-        }]
+        }],
+        thumbnailPath: {
+            type: String,
+        }
     }
 )
 

@@ -1,5 +1,7 @@
 const { exec } = require('child_process')
 const axios = require('axios')
+const fs = require('fs')
+const path = require('path')
 
 const { response } = require('../helper')
 const foodModel = require('../model/food')
@@ -100,4 +102,30 @@ exports.detect = async (req, res) => {
         // message: "yes",
         image
     })
+}
+
+exports.setThumbnail = async (req, res) => {
+
+    const { id } = req.params
+
+    const { file } = req
+
+    // log.debug(file)
+
+    const food = await foodModel.findById(id)
+    if (food) {
+        if (file) {
+            if (food.thumbnailPath) {
+                fs.unlinkSync(path.join(__dirname, `../uploads/thumbnail/food/${food.thumbnailPath}`))
+            }
+            food.thumbnailPath = file.filename
+            await food.save()
+        }
+        return response.Success(res, {
+            food
+        })
+    } else {
+        fs.unlinkSync(file.path)
+        throw ReferenceError("food not found")
+    }
 }
